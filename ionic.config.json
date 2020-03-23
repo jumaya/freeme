@@ -1,0 +1,7 @@
+{
+  "name": "freeme",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
