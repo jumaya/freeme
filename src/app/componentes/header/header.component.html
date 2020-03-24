@@ -1,0 +1,23 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button color="primary" menu="primerMenu">
+            </ion-menu-button>
+        </ion-buttons>
+        <ion-title color="primary">{{titulo}}</ion-title>
+
+        <ion-buttons slot="end">
+
+            <ion-button [routerLink]="ruta+'/en'" color="primary">
+                <ion-icon name="locate"></ion-icon>
+                en
+            </ion-button>
+
+            <ion-button [routerLink]="ruta+'/es'" color="tertiary">
+                <ion-icon name="locate"></ion-icon>
+                es
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>

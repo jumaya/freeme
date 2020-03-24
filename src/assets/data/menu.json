@@ -1,0 +1,11 @@
+[{
+        "icon": "american-football",
+        "name": "Inicio de Sesión",
+        "redirectTo": "/login"
+    },
+    {
+        "icon": "appstore",
+        "name": "Alert",
+        "redirectTo": "/alert"
+    }
+]
