@@ -1,9 +1,27 @@
+<ion-toolbar>
+    <ion-buttons slot="end">
+        <ion-button routerLink="/login/en" color="medium">
+            <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
+            <ion-label> en </ion-label>
+        </ion-button>
+        <ion-button routerLink="/login/es" color="medium">
+            <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
+            <ion-label class="medium"> es </ion-label>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-img src="/assets/sign-in/logo-freeme.svg">
+</ion-img>
+
 <ion-card>
 
     <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
         <ion-item>
-            <ion-icon slot="start" src="/assets/sign-in/usuario-icon.svg"></ion-icon>
-            <ion-input placeholder="Usuario" required formControlName="user" type="text"></ion-input>
+
+            <ion-input placeholder="&nbsp;{{usuario}}" required formControlName="user" type="text">
+                <ion-icon slot="start" src="/assets/sign-in/usuario-icon.svg"></ion-icon>
+            </ion-input>
         </ion-item>
         <div *ngFor="let error of errorMessages.user">
             <ion-item *ngIf="user.hasError(error.type) && (user.dirty || user.touched)">
@@ -14,8 +32,10 @@
         </div><br>
 
         <ion-item>
-            <ion-icon slot="start" src="/assets/sign-in/contraseña-icon.svg"></ion-icon>
-            <ion-input placeholder="Contraseña" required formControlName="password" type="password"></ion-input>
+            <ion-input placeholder="&nbsp;{{pass}}" required formControlName="password" type="password">
+                <ion-icon slot="start" src="/assets/sign-in/contraseña-icon.svg"></ion-icon>
+            </ion-input>
+
         </ion-item>
         <div *ngFor="let error of errorMessages.password">
             <ion-item *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
@@ -28,6 +48,18 @@
         <ion-button shape="round" expand="full" #btnGuardar block color="primary" type="submit" [disabled]="LoginForm.invalid">
             {{buttom}}
         </ion-button>
-    </form>
+    </form><br>
+
+    <ion-label color="primary">
+        <p> {{text1}} {{text2}}  <p>                   
+    </ion-label><br><br>
+
+    <ion-label color="medium">
+        <small> {{text3}} </small> <br>      
+    </ion-label>
+
+    <ion-label color="primary">        
+        <small> {{text4}} , {{text5}}  </small>
+    </ion-label>
 
 </ion-card>

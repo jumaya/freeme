@@ -2,7 +2,7 @@ import { Componente, Mensaje } from './../configuration/config';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import config from '../configuration/config';
-
+import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,21 @@ export class DataService {
 
   constructor(
     private http: HttpClient) { }
+
+  login(data) {
+    return this.http.post('https://api7.cloudframework.io/freeme/mobile/in',
+      {
+        user: data.user,
+        password: data.password,
+        type: data.type
+      },
+      {
+        headers: {
+          'X-WEB-KEY': 'Production',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+  }
 
   getUsers() {
     return this.http.get('https://jsonplaceholder.typicode.com/users');

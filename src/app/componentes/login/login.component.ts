@@ -25,6 +25,11 @@ export class LoginComponent implements OnInit {
   @Input() usuario: string;
   @Input() pass: string;
   @Input() buttom: string;
+  @Input() text1: string;
+  @Input() text2: string;
+  @Input() text3: string;
+  @Input() text4: string;
+  @Input() text5: string;
   lan: Observable<Mensaje[]> = this.appService.getErrorMessages();
 
   LoginForm: FormGroup;
@@ -62,7 +67,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.presentToast('ss');
+    var data = {
+      'user': this.LoginForm.value.user,
+      'password': this.LoginForm.value.password,
+      'type': 'userpassword'
+    }
+
+    this.appService.login(data).toPromise().then((res) => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err)
+      this.btnGuardar.disabled = false;
+    });
   }
 
 }

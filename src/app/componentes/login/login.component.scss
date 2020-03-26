@@ -1,23 +1,35 @@
 ion-card {
-    width: 75%;
+    width: 70%;
+    margin-top: 70px;
     text-align: center;
     display: block;
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    --background: none;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.85);
     background-position: center top;
-    opacity: 0.70;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-bottom: 10px;
+}
+
+
+ion-img {
+    width: 60%;
+    height: 15%;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
 ion-item {
     --background: none;
-    background-color: black;
-    opacity: 0.80;
-    font-weight: bold;
+}
+
+ion-toolbar {
+    --background: none;
 }
 
 ion-input {
