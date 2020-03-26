@@ -28,6 +28,16 @@ export class DataService {
       })
   }
 
+  getCuenta() {    
+    return this.http.get('https://api7.cloudframework.io/freeme/mobile/users/myself',
+      {
+        headers: {
+          'X-WEB-KEY': 'Production',
+          'X-DS-TOKEN': localStorage.getItem('token')
+        }
+      })
+  }
+
   getUsers() {
     return this.http.get('https://jsonplaceholder.typicode.com/users');
   }

@@ -1,12 +1,13 @@
 <ion-toolbar>
     <ion-buttons slot="end">
         <ion-button routerLink="/login/en" color="medium">
-            <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
             <ion-label> en </ion-label>
+            <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
+
         </ion-button>
         <ion-button routerLink="/login/es" color="medium">
-            <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
-            <ion-label class="medium"> es </ion-label>
+            <ion-label> es </ion-label>
+            <ion-icon slot="start" src="/assets/icon_es.svg"></ion-icon>
         </ion-button>
     </ion-buttons>
 </ion-toolbar>
@@ -50,16 +51,28 @@
         </ion-button>
     </form><br>
 
-    <ion-label color="primary">
-        <p> {{text1}} {{text2}}  <p>                   
-    </ion-label><br><br>
-
     <ion-label color="medium">
-        <small> {{text3}} </small> <br>      
+        {{text1}}
     </ion-label>
 
-    <ion-label color="primary">        
-        <small> {{text4}} , {{text5}}  </small>
+    <ion-label color="primary">
+        {{text2}}
+    </ion-label><br><br><br>
+
+    <ion-label color="medium">
+        <small> {{text3}} </small> <br>
+    </ion-label>
+
+    <ion-label color="primary">
+        <small> {{text4}} </small>
+    </ion-label>
+
+    <ion-label color="medium">
+        <small> {{text5}} </small>
+    </ion-label>
+
+    <ion-label color="primary">
+        <small> {{text6}}  </small>
     </ion-label>
 
 </ion-card>

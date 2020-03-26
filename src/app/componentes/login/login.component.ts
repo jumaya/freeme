@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   @Input() text3: string;
   @Input() text4: string;
   @Input() text5: string;
+  @Input() text6: string;
   lan: Observable<Mensaje[]> = this.appService.getErrorMessages();
 
   LoginForm: FormGroup;
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
     ],
   };
 
+
+  cuenta: Observable<any>;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -66,15 +69,20 @@ export class LoginComponent implements OnInit {
     toast.present();
   }
 
-  onSubmit() {
+  onSubmit() {    
     var data = {
       'user': this.LoginForm.value.user,
       'password': this.LoginForm.value.password,
       'type': 'userpassword'
     }
-
     this.appService.login(data).toPromise().then((res) => {
-      console.log(res);
+      Object.keys(res).map(function (idx) {       
+          let respuesta = res[idx];
+          if (respuesta.dstoken != undefined) {
+            localStorage.setItem('token', respuesta.dstoken);                                         
+          } 
+      });  
+      this.router.navigate(['/cuenta']);          
     }).catch(err => {
       console.log(err)
       this.btnGuardar.disabled = false;

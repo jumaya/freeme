@@ -3,7 +3,15 @@
 
 /** Ionic CSS Variables **/
 
+@font-face {
+    font-family: 'sarabun';
+    src: url('/../assets/fonts/Sarabun-Bold') format('embedded-opentype'), url('/../assets/fonts/Sarabun-Regular.ttf') format('woff'), url('/../assets/fonts/Sarabun-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
+    --ion-font-family: 'sarabun';
     /** primary **/
     --ion-color-primary: #18D8CD;
     --ion-color-primary-rgb: 56, 128, 255;
