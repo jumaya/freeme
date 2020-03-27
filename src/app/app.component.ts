@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Data } from '@angular/router';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,16 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private dataService: DataService
+    private dataService: DataService,
+    private translateService: TranslateService
   ) {
     this.initializeApp();
+    this.platform.ready().then(() => {      
+      this.translateService.setDefaultLang('es');
+      this.translateService.use('es');
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
   }
 
   initializeApp() {

@@ -1,4 +1,4 @@
-import { Componente, Mensaje } from './../configuration/config';
+import { Componente } from './../configuration/config';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import config from '../configuration/config';
@@ -28,12 +28,22 @@ export class DataService {
       })
   }
 
-  getCuenta() {    
+  getCuenta(token) {    
     return this.http.get('https://api7.cloudframework.io/freeme/mobile/users/myself',
       {
         headers: {
           'X-WEB-KEY': 'Production',
-          'X-DS-TOKEN': localStorage.getItem('token')
+          'X-DS-TOKEN': token
+        }
+      })
+  }
+
+  getGraph(token) {    
+    return this.http.get('https://api7.cloudframework.io/freeme/mobile/users/myself/graph',
+      {
+        headers: {
+          'X-WEB-KEY': 'Production',
+          'X-DS-TOKEN': token
         }
       })
   }
@@ -45,13 +55,5 @@ export class DataService {
   getMenuOpts() {
     return this.http.get<Componente[]>('/assets/data/menu.json');
   }
-
-  getErrorMessages() {
-    console.log(this.language)
-    if (this.language == 'en') {
-      return this.http.get<Mensaje[]>('/assets/data/error_en.json');
-    } else {
-      return this.http.get<Mensaje[]>('/assets/data/error_es.json');
-    }
-  }
+   
 }

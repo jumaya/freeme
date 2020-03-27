@@ -1,24 +1,60 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>cuenta</ion-title>
-    </ion-toolbar>
-</ion-header>
-
+<app-header titulo="{{ 'Cuenta' | translate }}"> </app-header>
 <ion-content>
 
     <ion-list *ngFor="let item of result">
 
         <ion-item>
-            <ion-img slot="start" src="/assets/profile/avatar-icon.svg"></ion-img>
 
-            <ion-label> {{item.name}}</ion-label> <br>
-
-            <ion-label> {{item.income}} | {{item.expense}}</ion-label>
+            <ion-img slot="start" src="/assets/profile/avatar-icon.svg"> </ion-img>
+            <ion-label style="padding-left: 0px">
+                <ion-title>{{item.name}}</ion-title>
+                <ion-text color="primary"> <strong> {{item.income | currency:'EUR':true }} </strong> </ion-text>
+                <ion-text> | </ion-text>
+                <ion-text color="tertiary"> <strong> {{item.expense | currency:'EUR':true  }} </strong> </ion-text>
+            </ion-label>
         </ion-item>
 
         <ion-item>
-            <ion-label>Nombres y Apellidos</ion-label>
+            <ion-label>{{ 'NAME' | translate }}</ion-label>
+            <ion-label color="primary" slot="end">{{item.name}}</ion-label>
         </ion-item>
+
+        <ion-item>
+            <ion-label>{{ 'EMAIL' | translate }}</ion-label>
+            <ion-label color="primary" slot="end">{{item.email}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>{{ 'TELEFONO' | translate }}</ion-label>
+            <ion-label color="primary" slot="end">{{item.telefono}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>NIF / NIE</ion-label>
+            <ion-label color="primary" slot="end">{{item.nif}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>{{ 'DIR' | translate }}</ion-label>
+            <ion-label color="primary" slot="end">{{item.direccion}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>{{ 'COD' | translate }}</ion-label>
+            <ion-label color="primary" slot="end">{{item.cod_postal}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label slot="start">{{ 'IRPF' | translate:{value: 'IRPF'} }}</ion-label>
+            <ion-badge color="primary" mode="ios">{{item.irpf/100 | percent}}</ion-badge>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>{{ 'PASS' | translate }}</ion-label>
+            <ion-badge color="primary" mode="ios">{{item.contra}}</ion-badge>
+
+        </ion-item>
+
 
     </ion-list>
 

@@ -1,0 +1,14 @@
+{
+    "NAME": "Full Name",
+    "EMAIL": "Email",
+    "TELEFONO": "Mobile Phone",
+    "DIR": "Address",
+    "COD": "PostCode",
+    "IRPF": "Type of {{ value }}",
+    "PASS": "Change Password",
+    "MENU": "Main menu",
+    "Cuenta": "Your Account",
+    "Facturacion": "Billing and Sales",
+    "user_rules": "The username is required",
+    "password_rules": "The password is required"
+}

@@ -1,11 +1,11 @@
 [{
-        "icon": "american-football",
-        "name": "Inicio de Sesión",
-        "redirectTo": "/login"
+        "icon": "person",
+        "name": "Cuenta",
+        "redirectTo": "/cuenta"
     },
     {
-        "icon": "appstore",
-        "name": "Alert",
-        "redirectTo": "/alert"
+        "icon": "bar-chart",
+        "name": "Facturacion",
+        "redirectTo": "/venta"
     }
 ]

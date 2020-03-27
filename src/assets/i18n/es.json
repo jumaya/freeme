@@ -1,0 +1,14 @@
+{
+    "NAME": "Nombres",
+    "EMAIL": "Correo electrónico",
+    "TELEFONO": "Teléfono",
+    "DIR": "Dirección",
+    "COD": "Código postal",
+    "IRPF": "Tipo de {{ value }}",
+    "PASS": "Cambiar contraseña",
+    "MENU": "Menú Principal",
+    "Cuenta": "Tu cuenta",
+    "Facturacion": "Facturación y Ventas",
+    "user_rules": "El usuario es requerido",
+    "password_rules": "La contraseña es requerida"
+}

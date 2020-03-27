@@ -7,8 +7,3 @@ export interface Componente {
    name: string;
    redirectTo: string;
 };
-
-export interface Mensaje {
-   user: string;
-   password: string;    
-};  

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -10,8 +11,14 @@ export class HeaderComponent implements OnInit {
   @Input() ruta: string;
   @Input() titulo: string;
 
-  constructor() { }
+  constructor(
+    private translateService: TranslateService
+  ) { }
 
   ngOnInit() {}
+
+  choose(lang) {
+    this.translateService.use(lang);
+  }
 
 }

@@ -1,21 +1,18 @@
 <ion-header no-border>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button color="primary" menu="primerMenu">
+            <ion-menu-button color="dark" menu="primerMenu">
             </ion-menu-button>
         </ion-buttons>
-        <ion-title color="primary">{{titulo}}</ion-title>
+        <ion-title color="primary">{{titulo | uppercase }}</ion-title>
 
         <ion-buttons slot="end">
+            <ion-button (click)="choose('en')" color="medium">
+                <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
 
-            <ion-button [routerLink]="ruta+'/en'" color="primary">
-                <ion-icon name="locate"></ion-icon>
-                en
             </ion-button>
-
-            <ion-button [routerLink]="ruta+'/es'" color="tertiary">
-                <ion-icon name="locate"></ion-icon>
-                es
+            <ion-button (click)="choose('es')" color="medium">
+                <ion-icon slot="start" src="/assets/icon_es.svg"></ion-icon>
             </ion-button>
         </ion-buttons>
 

@@ -1,11 +1,10 @@
 <ion-toolbar>
     <ion-buttons slot="end">
-        <ion-button routerLink="/login/en" color="medium">
+        <ion-button (click)="routerLink('en')" color="medium">
             <ion-label> en </ion-label>
             <ion-icon slot="start" src="/assets/icon_en.svg"></ion-icon>
-
         </ion-button>
-        <ion-button routerLink="/login/es" color="medium">
+        <ion-button (click)="routerLink('es')" color="medium">
             <ion-label> es </ion-label>
             <ion-icon slot="start" src="/assets/icon_es.svg"></ion-icon>
         </ion-button>
@@ -17,6 +16,8 @@
 
 <ion-card>
 
+
+
     <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
         <ion-item>
 
@@ -26,8 +27,8 @@
         </ion-item>
         <div *ngFor="let error of errorMessages.user">
             <ion-item *ngIf="user.hasError(error.type) && (user.dirty || user.touched)">
-                <small *ngFor="let item of lan | async " class="error-message">
-                      {{item.user}}
+                <small class="error-message">
+                    {{ 'user_rules' | translate }}
                   </small>
             </ion-item>
         </div><br>
@@ -40,8 +41,8 @@
         </ion-item>
         <div *ngFor="let error of errorMessages.password">
             <ion-item *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
-                <small *ngFor="let item of lan | async " class="error-message">
-                      {{item.password}}
+                <small class="error-message">
+                    {{ 'password_rules' | translate }}
                   </small>
             </ion-item>
         </div> <br>

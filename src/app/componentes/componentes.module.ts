@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     IonicModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ]
 })
 export class ComponentesModule { }

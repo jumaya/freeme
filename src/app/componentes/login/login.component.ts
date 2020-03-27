@@ -1,4 +1,4 @@
-import { Mensaje } from './../../configuration/config';
+import { TranslateService } from '@ngx-translate/core';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { IonButton, ToastController } from '@ionic/angular';
@@ -30,9 +30,11 @@ export class LoginComponent implements OnInit {
   @Input() text3: string;
   @Input() text4: string;
   @Input() text5: string;
-  @Input() text6: string;
-  lan: Observable<Mensaje[]> = this.appService.getErrorMessages();
+  @Input() text6: string;  
+  @Input() text7: string;    
+  @Input() _token: string;  
 
+  
   LoginForm: FormGroup;
   public errorMessages = {
     user: [
@@ -43,20 +45,19 @@ export class LoginComponent implements OnInit {
     ],
   };
 
-
   cuenta: Observable<any>;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private toastCtrl: ToastController,
-    private appService: DataService
+    private appService: DataService,
+    private translateService: TranslateService
   ) {
     localStorage.clear();
     this.LoginForm = this.formBuilder.group({
       user: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
-
   }
 
   ngOnInit() { }
@@ -69,24 +70,26 @@ export class LoginComponent implements OnInit {
     toast.present();
   }
 
-  onSubmit() {    
+  onSubmit() {
+    this.btnGuardar.disabled = true;
     var data = {
       'user': this.LoginForm.value.user,
       'password': this.LoginForm.value.password,
       'type': 'userpassword'
     }
-    this.appService.login(data).toPromise().then((res) => {
-      Object.keys(res).map(function (idx) {       
-          let respuesta = res[idx];
-          if (respuesta.dstoken != undefined) {
-            localStorage.setItem('token', respuesta.dstoken);                                         
-          } 
-      });  
-      this.router.navigate(['/cuenta']);          
+    this.appService.login(data).toPromise().then((res: any) => {
+      localStorage.setItem('token', res.data.dstoken);
+      this.router.navigate(['/cuenta']);
     }).catch(err => {
-      console.log(err)
+      console.log(err)      
       this.btnGuardar.disabled = false;
+      this.presentToast(this.text7)
     });
+  }
+
+  routerLink(param){
+    this.router.navigate(['/login/'+param]);   
+    this.translateService.use(param);
   }
 
 }
