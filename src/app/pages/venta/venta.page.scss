@@ -1,0 +1,42 @@
+ion-img {
+    width: 35%;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+ion-item-group {
+    width: 85%;
+    border: 1pt solid rgb(210, 213, 221);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+ion-item {
+    --border-style: unset;
+}
+
+ion-label {
+    font-weight: 900;
+    text-align: right;
+    padding-left: 5pt;
+}
+
+ion-text {
+    border: hidden;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.small {
+    font-size: small;
+}
+
+ion-card {
+    box-shadow: none;
+}
+
+.center {
+    text-align: center;
+}

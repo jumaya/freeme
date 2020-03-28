@@ -1,3 +1,8 @@
+/**
+* @fileoverview Pagina donde se visualiza el formulario de tu cuenta y todas sus operaciones * 
+* @author Juan Sebastian Maya <jumaya19@gmail.com> 
+*/
+
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from './../../services/data.service';
@@ -11,25 +16,50 @@ import { LoadingController } from '@ionic/angular';
 })
 export class CuentaPage implements OnInit {
 
-  cuenta: Observable<any>;
+  /**
+  * Array en donde se almacena los datos del usuario logueado
+  * @type {Array}
+  */
   result: any[] = new Array();
-  loading: any;
-  _token: string;  
 
+  /**
+  * Objeto que invoca al LoadingController de IONIC
+  * @type {any}
+  */
+  loading: any;
+
+  /**
+  * Propiedad donde se almacena el token del usuario logueado
+  * @type {string}
+  */
+  _token: string;
+
+  /** @constructor */
   constructor(
     private dataService: DataService,
     private router: Router,
     private LoadingCtrl: LoadingController,
   ) { }
 
-  ngOnInit() {    
+  /**
+  * Metodo iniciliziador del formulario 
+  */
+  ngOnInit() {
+
+    /* LLama al loading hasta que se carguen los datos del usuario */
     this.presentLoading('Cargando...').then(() => {
       this.getCuenta().then(() => {
         this.loading.dismiss();
       });
     });
+
   }
 
+  /**
+  * Metodo que permite cargar el objeto LoadingController 
+  * @param  {string}
+  * @return  {LoadingController}
+  */
   async presentLoading(message: string) {
     this.loading = await this.LoadingCtrl.create({
       message
@@ -37,24 +67,18 @@ export class CuentaPage implements OnInit {
     return this.loading.present();
   }
 
-  async getCuentaLocal() {
-    this.result.push({
-      'name': 'Usuario test prueba developer',
-      'email': 'ionic@freeme.es',
-      'telefono': '627550757',
-      'nif': '111111H',
-      'direccion': 'Calle Serrano 8',
-      'cod_postal': '28081',
-      'irpf': '7',
-      'contra': null,
-      'income': '1230.98',
-      'expense': '238.99',
-    })
-  }
-
+  /**
+  * Metodo que permite obtener los datos del usuario loagueado a partir del llamado al servicio 
+  * @return  {void}
+  */
   async getCuenta() {
+
+    /* Se obtiene el token del storage */
     this._token = localStorage.getItem('token');
+
+    /* LLamado al servicio enviando como parametro el token */
     this.dataService.getCuenta(this._token).toPromise().then((res: any) => {
+      /* Se guarda en el array el resultado al servicio invocado */
       this.result.push({
         'name': res.data.User.name,
         'email': res.data.User.email,
@@ -68,6 +92,8 @@ export class CuentaPage implements OnInit {
         'expense': res.data.Balance.expense
       })
     }).catch(err => {
+      /* Si se produce un error se vuelve al formulario de incio de sesion 
+      para obtener info del token */
       console.log(err);
       this.router.navigate(['/login/es']);
     });

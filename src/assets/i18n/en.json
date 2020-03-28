@@ -10,5 +10,8 @@
     "Cuenta": "Your Account",
     "Facturacion": "Billing and Sales",
     "user_rules": "The username is required",
-    "password_rules": "The password is required"
+    "password_rules": "The password is required",
+    "Ingresos": "INCOMES",
+    "Gastos": "EXPENSES",
+    "fecha": "SEPTEMBER 2019"
 }

@@ -10,5 +10,8 @@
     "Cuenta": "Tu cuenta",
     "Facturacion": "Facturación y Ventas",
     "user_rules": "El usuario es requerido",
-    "password_rules": "La contraseña es requerida"
+    "password_rules": "La contraseña es requerida",
+    "Ingresos": "INGRESOS",
+    "Gastos": "GASTOS",
+    "fecha": "Septiembre 2019"
 }

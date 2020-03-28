@@ -67,6 +67,10 @@
     animation-duration: 2s;
 }
 
+input {
+    margin-left: 7pt !important;
+}
+
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;

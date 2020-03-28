@@ -1,7 +1,11 @@
+/**
+* @fileoverview Pagina donde se visualiza el formulario de facturacion y venta y todas sus operaciones * 
+* @author Juan Sebastian Maya <jumaya19@gmail.com> 
+*/
 import { Router } from '@angular/router';
 import { DataService } from './../../services/data.service';
 import { LoadingController } from '@ionic/angular';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
 
 @Component({
@@ -11,17 +15,39 @@ import * as HighCharts from 'highcharts';
 })
 export class VentaPage implements OnInit {
 
-  _token: string;  
+  /**
+  * Propiedad donde se almacena el token del usuario logueado
+  * @type {string}
+  */
+  _token: string;
+
+  /**
+  * Objeto que invoca al LoadingController de IONIC
+  * @type {any}
+  */
   loading: any;
+
   @Input() fecha: string;
-  result: any[] = new Array();  
+
+  /**
+  * Array en donde se almacena los datos de facturacion y ventas
+  * @type {Array}
+  */
+  result: any[] = new Array();
+
+  /** @constructor */
   constructor(
     private LoadingCtrl: LoadingController,
     private dataService: DataService,
     private router: Router,
   ) { }
 
+
+  /**
+  * Metodo iniciliziador del formulario donde se visualiza el Loading
+  */
   ngOnInit() {
+    /* Se visualiza el loading hasta que se complete la consulta */
     this.presentLoading('Cargando...').then(() => {
       this.getGrafica().then(() => {
         this.loading.dismiss();
@@ -29,35 +55,56 @@ export class VentaPage implements OnInit {
     });
   }
 
+  /**
+  * Metodo que permite cargar el objeto LoadingController 
+  * @param  {string}
+  * @return  {LoadingController}
+  */
   async presentLoading(message: string) {
     this.loading = await this.LoadingCtrl.create({
       message
     });
     return this.loading.present();
-  }
+  } 
 
+  /**
+  * Metodo que permite obtener los datos de la consulta para realizar la grafica
+  * @return  {void}
+  */
   async getGrafica() {
+
+    /* Se obtiene el token del storage */
     this._token = localStorage.getItem('token');
-    this.dataService.getGraph(this._token).toPromise().then((res: any) => {      
+
+    /* LLamado al servicio de obtener grafica enviando como parametro el token de usuario */
+    this.dataService.getGraph(this._token).toPromise().then((res: any) => {
       var resp = res.data.monthly.detail;
-      this.fecha = res.data.monthly.summary.date
+      var fec = res.data.monthly.summary.date
+      this.fecha = fec.getFullYear()+'-'+ (fec.getUTCMonth()+1).toString();
       this.result.push({
         'ingresos': res.data.monthly.summary.credit.amount,
         'gastos': res.data.monthly.summary.debit.amount,
         'vat_in': res.data.monthly.summary.credit.vat,
-        'vat_gast': res.data.monthly.summary.debit.vat      
+        'vat_gast': res.data.monthly.summary.debit.vat
       })
+
+      /* LLamado al metodo de higchart para graficar segun los datos obtenidos */
       this.plotSimpleBarChart(resp.labels, resp.income, resp.expense);
+
     }).catch(err => {
       console.log(err);
       this.router.navigate(['/login/es']);
     });
   }
 
+  /**
+  * Metodo que permite realizar la grafica de area segun los datos obtenidos en la consulta
+  * @param  {array} 
+  * @param  {array}
+  * @param  {array}
+  * @return {object}
+  */
   plotSimpleBarChart(label, income, expense) {
-    console.log(label)
-    console.log(income)
-    console.log(expense)
     HighCharts.chart('highcharts', {
       chart: {
         type: 'area'
@@ -66,7 +113,7 @@ export class VentaPage implements OnInit {
         text: ''
       },
       xAxis: {
-        categories: label,        
+        categories: label,
       },
       yAxis: {
         title: {
@@ -74,8 +121,7 @@ export class VentaPage implements OnInit {
         }
       },
       tooltip: {
-        split: true,
-        valueSuffix: ' millions'
+        split: true
       },
       plotOptions: {
         area: {
@@ -89,17 +135,17 @@ export class VentaPage implements OnInit {
           }
         }
       },
-      
+
       series: [
         {
-          name: 'Income',
+          name: '',
           type: undefined,
           data: income,
           color: '#11d5ef'
         },
-        
+
         {
-          name: 'Expense',
+          name: '',
           type: undefined,
           data: expense,
           color: '#e71d73'
