@@ -26,7 +26,6 @@
         "@ngx-translate/core": "^12.1.2",
         "@ngx-translate/http-loader": "^4.0.0",
         "chart.js": "^2.9.3",
-        "cordova-android": "8.1.0",
         "core-js": "^2.5.4",
         "highcharts": "^8.0.4",
         "rxjs": "~6.5.1",
@@ -75,8 +74,6 @@
             },
             "cordova-plugin-ionic-keyboard": {}
         },
-        "platforms": [
-            "android"
-        ]
+        "platforms": []
     }
 }
