@@ -79,7 +79,7 @@ export class VentaPage implements OnInit {
     /* LLamado al servicio de obtener grafica enviando como parametro el token de usuario */
     this.dataService.getGraph(this._token).toPromise().then((res: any) => {
       var resp = res.data.monthly.detail;
-      var fec = res.data.monthly.summary.date
+      var fec = new Date(res.data.monthly.summary.date);      
       this.fecha = fec.getFullYear()+'-'+ (fec.getUTCMonth()+1).toString();
       this.result.push({
         'ingresos': res.data.monthly.summary.credit.amount,
